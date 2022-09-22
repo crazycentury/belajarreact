@@ -25,7 +25,7 @@ const Timer = () => {
     setIsPaused(true)
     countRef.current = setInterval(()=> {
       setTimer((timer) => timer+1)
-    },1000)
+    },100)
   }
 
   const Pause = () =>{
@@ -74,6 +74,7 @@ const Timer = () => {
 
       {/* Task2 */}
       <div className='container-shape'>
+        <div className='container'>
         <div className='container-column'>
 
           <div className='container-top'>
@@ -84,12 +85,14 @@ const Timer = () => {
             <div className='sequere-border'/>
             <div className='oval'/>
           </div>
+
+          </div>
           
-            <div className='sequere-green'/>
-          
-          
-          
+          <div className='sequere-green'/>
+
         </div>
+        
+        
         <div className='green-rectenggel'/>
         
         
