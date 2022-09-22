@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  align-items: center;
 }
 
 .App-logo {
@@ -28,6 +29,126 @@
   color: #61dafb;
 }
 
+.stopwatch-card {
+  background-color: #61dafb;
+  width: 270px;
+  height: 100px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  align-self: center;
+  margin-bottom: 20px;
+}
+
+.button-container {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+width: 330px;
+}
+
+.style-start {
+padding-top: 15px;
+padding-bottom: 15px;
+padding-left: 30px;
+padding-right: 30px;
+border-radius: 20px;
+border: white;
+background-color: yellow;
+}
+
+.style-pause {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 20px;
+  border: white;
+  background-color: greenyellow;
+}
+
+.style-reset {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 20px;
+  border: white;
+  background-color: green;
+}
+
+.container-shape {
+  width: 700px;
+  height: 400px;
+  margin-top: 50px;
+  margin-left: 50px;
+  padding: 30px;
+  border: 2px solid black;
+}
+
+.container-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-top {
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.sequere {
+  width: 200px;
+  height: 150px;
+  background-color: red;
+}
+
+.rectenggel {
+  width: 0;
+  height: 0;
+  border-top: 75px solid transparent;
+  border-left: 170px solid orange;
+  border-bottom: 75px solid transparent;
+  margin-top: 0px;
+  margin-left: 20px;
+}
+
+.sequere-border {
+  width: 200px;
+  height: 150px;
+  border-radius: 30px;
+  background-color: pink;
+  margin-top: 20px;
+}
+
+.oval {
+  width: 200px;
+  height: 150px;
+  
+  border-radius: 100px / 75px;
+  border: 2px solid cyan;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.green-rectenggel {
+  width: 700px;
+  height: 70px;
+  background-color: greenyellow;
+  margin-top: 20px;
+}
+
+.sequere-green {
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  left: 550px;
+  border-radius: 30px;
+  background-color: green;
+  margin-top: 20px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -36,3 +157,5 @@
     transform: rotate(360deg);
   }
 }
+
+
