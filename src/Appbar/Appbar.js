@@ -8,6 +8,8 @@ import List from '@mui/material/List';
 import IconButton from '@mui/material/IconButton';
 // import MenuIcon from '@mui/icons-material/Menu';
 
+import './appbar.css';
+
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -15,120 +17,221 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
+function GetList({data, index, list, setList}){
+  const [open, setOpen] = React.useState(false);
+  const [edit, setEdit] = useState(false)
+  return(
+    <div key={index+1} 
+            style={{ 
+              padding: '20px', 
+              display: 'flex', 
+              justifyContent: 'space-between', 
+              border: '2px solid black', 
+              marginBottom: '20px'
+              }}>
 
-export default function Appbar() {
-    const [open, setOpen] = React.useState(false);
+              <div 
+              style={{
+                display: 'flex', 
+                flexDirection: 'column', 
+                marginLeft: '40px'
+                }}>
+                <h3>Name: {data.name}</h3>
+                <h3>Address: {data.address}</h3>
+              </div>
+              
+              <div 
+              style={{
+                display: 'flex', 
+                flexDirection: 'column', 
+                marginLeft: '40px'
+                }}>
+                <h3 style={{marginRight: '40px'}}>Hobby: {data.hobby}</h3>
+                <Button
+                sx={{ 
+                  width: '80px',
+                  height: '40px',
+                  marginRight: '50px',
+                  color: 'white',
+                  backgroundColor: 'cyan',
+                  borderRadius: '40px',
+                  }}
+                onClick={() => {setOpen(true); setEdit(true)}}
+                >edit</Button>
+                <DialogInput list={list} setList={setList} open={open} data={data} setOpen={setOpen} index={index} edit={edit}/>
+              </div>
+              
+            </div>
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  );
+};
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+const DialogInput = ({open, setOpen, data, list, setList, edit, index}) => {
+    // const [open, setOpen] = React.useState(false);
+    const [open2, setOpen2] = React.useState(false);
+    const [obj, setObj] = useState(data);
+    // const [data, setData] = useState({})
 
-  const [data, setData] = useState({})
-  // const [showInConsole, setShowInConsole] = useState(false)
-  // const [showInDom, setShowInDom] = useState(false)
-  const [list, setList] = useState([
-    {
-      name: "Luna",
-      address: "Jalan Agung",
-      hobby: "Mancing"
-    }
-  ]);
+    // const handleClickOpen = () => {
+    // setOpen(true);
+    // };
 
-  const setSave = () => {
-    let tempList = [...list];
-    tempList.push(data);
-    setList(tempList);
-    handleClose();
-
-  };
+    const handleClose = () => {
+      setOpen(false);
+    };
 
 
-  return (
-    <div>
-        <Box sx={{ flexGrow: 1}}>
-        <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            {/* <MenuIcon /> */}
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1}}>
-            MyApp
-          </Typography>
-          <Button color="inherit" onClick={handleClickOpen}>ADD USER</Button>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    const setSave = () => {
+      if (obj.name == "" || obj.address == "" || obj.hobby == "" ) {
+        alert("Field Can't be Empty");
+        return
+      }
+      handleClose();
+        if (edit) {
+            let tempList = [...list]
+            tempList[index] = obj
+            setList(tempList)
+        }
+        else {
+            let tempList = [...list]
+            tempList.push(obj)
+            setList(tempList)
+        }        
 
-    <Dialog open={open} onClose={handleClose} align="center">
-        <DialogTitle>Add User</DialogTitle>
-        <DialogContent>
-          {/* <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
-          </DialogContentText> */}
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Name"
-            type="name"
-            fullWidth
-            variant="standard"
-            onChange={(e) => setData({...data, name: e.target.value})}
+        setObj({
+            name: "",
+            address: "",
+            hobby: ""
+        })
+
+    };
+
+    useEffect(() => {
+      console.log(list)
+      console.log(obj)
+  }, [list, obj])
+
+  return(
+    <Dialog 
+    open={open} 
+    onClose={handleClose} 
+    align="center">
+    <DialogTitle>Add User</DialogTitle>
+      <DialogContent>
+        <TextField
+          autoFocus
+          margin="dense"
+          id="name"
+          label="Name"
+          type="name"
+          fullWidth
+          variant="standard"
+          value={obj.name}
+          onChange={(e) => setObj({...obj, name: e.target.value})}
           />
           <TextField
             autoFocus
             margin="dense"
             id="address"
             label="Address"
-            type="address"
+            type="text"
             fullWidth
             variant="standard"
-            onChange={(e) => setData({...data, address: e.target.value})}
+            value={obj.address}
+            onChange={(e) => setObj({...obj, address: e.target.value})}
           />
           <TextField
             autoFocus
             margin="dense"
             id="hobby"
             label="Hobby"
-            type="hobby"
+            type="text"
             fullWidth
             variant="standard"
-            onChange={(e) => setData({...data, hobby: e.target.value})}
+            value={obj.hobby}
+            onChange={(e) => setObj({...obj, hobby: e.target.value})}
           />
+          
         </DialogContent>
         <DialogActions
         align="center">
           {/* <Button onClick={handleClose}>Cancel</Button> */}
-          <Button onClick={
-            setSave
-          } >Save</Button>
+          <Button onClick={() => {setSave()}} >Save</Button>
         </DialogActions>
       </Dialog>
+  );
+}
+
+
+export default function Appbar() {
+  const [open, setOpen] = React.useState(false);
+  const [list, setList] = useState([])
+  const [title, setTitle] = useState("")
+  const [data, setData] = useState([
+    {
+      name: "",
+      address: "",
+      hobby: ""
+    }
+  ]);
+
+  return (
+    <div>
+      <Box >
+        <AppBar position="static">
+          <Toolbar sx={{ justifyContent: 'space-between'}}>
+            <Typography variant="h6" component="div" sx={{ marginLeft: '50px'}}>
+              MyApp
+            </Typography>
+            <Button color="inherit" 
+            sx={{ 
+              width: '130px',
+              height: '45px',
+              marginRight: '50px',
+              backgroundColor: 'cyan',
+              borderRadius: '40px',
+              border: '1px solid black',}}
+              onClick={() => setOpen(open => !open)}>Add User</Button>
+          </Toolbar>
+        </AppBar>
+      </Box>
+      <div 
+      style={{
+        width: '100%',
+        height: '100px',
+        marginLeft: '20px',
+        borderRadius: '30px',
+
+      }}>
+      <TextField
+        sx={{
+          marginLeft: '20px',
+          marginTop: '20px',
+          width: '250px',
+          borderRadius: '30px',
+          
+          alignItems: 'left',
+
+
+        }}
+          id="filled-search"
+          label="Search"
+          type="search"
+          alignSelft="left"
+          value={title} onChange={e => setTitle(e.target.value)}
+
+        />
+
+      </div>
+      
+      
+      <DialogInput open={open} setOpen={setOpen} data={data} list={list} setList={setList}/>
 
       <List>
       {
           list.map((el, index) => {
-            return(
-            <div key={index+1} style={{ padding: '20px', display: 'flex', justifyContent: 'space-between', border: '2px solid black', marginBottom: '20px'}}>
-              <div style={{display: 'flex', flexDirection: 'column', marginLeft: '40px'}}>
-                <h3>Name: {el.name}</h3>
-                <h3>Address: {el.address}</h3>
-              </div>
-              
-              <h3 style={{marginRight: '40px'}}>Hobby: {el.hobby}</h3>
-            </div>
-            )
+            if (el.name.includes(title) || el.address.includes(title) || el.hobby.includes(title)) return <GetList list={list} setList={setList} index={index} key={index} data={el}/>
+            
           })
         }
 
