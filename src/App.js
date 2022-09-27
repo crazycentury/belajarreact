@@ -3,15 +3,33 @@ import './App.css';
 import React,{ useState, useRef } from 'react';
 import Form from './form';
 import Appbar from './Appbar/Appbar';
-import Timer from './Timer';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import View from './View';
+import About from './Appbar/About';
+import Hobby from './Appbar/Hobby';
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Link,
+  Routes,
+  Navigate
+} from "react-router-dom";
 
 
 function App() {
   return (
     <div className="App">
-      <Appbar/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Appbar/>} />
+          <Route path="/view/:id" element={<View />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/hobby" element={<Hobby />} />
+          <Route path="*" element={<Navigate to='/' replace ></Navigate>}/>
+        </Routes>
+        
+      </BrowserRouter>
+      
 
 
 

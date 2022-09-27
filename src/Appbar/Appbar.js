@@ -16,8 +16,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useNavigate } from 'react-router-dom';
+
 
 function GetList({data, index, list, setList}){
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const [edit, setEdit] = useState(false)
   return(
@@ -59,6 +62,17 @@ function GetList({data, index, list, setList}){
                 onClick={() => {setOpen(true); setEdit(true)}}
                 >edit</Button>
                 <DialogInput list={list} setList={setList} open={open} data={data} setOpen={setOpen} index={index} edit={edit}/>
+                <Button
+                sx={{ 
+                  width: '80px',
+                  height: '40px',
+                  marginRight: '50px',
+                  marginTop: '10px',
+                  color: 'white',
+                  backgroundColor: 'cyan',
+                  borderRadius: '40px',
+                  }}
+                onClick={() => navigate(`/view/${index+1}`, {state: {data}})} >view</Button>
               </div>
               
             </div>
@@ -164,6 +178,7 @@ const DialogInput = ({open, setOpen, data, list, setList, edit, index}) => {
 
 
 export default function Appbar() {
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const [list, setList] = useState([])
   const [title, setTitle] = useState("")
@@ -183,6 +198,16 @@ export default function Appbar() {
             <Typography variant="h6" component="div" sx={{ marginLeft: '50px'}}>
               MyApp
             </Typography>
+            <Typography variant="h6" component="div" sx={{ marginLeft: '50px'}}
+            onClick={() => navigate(`/about`)}
+            >
+              About
+            </Typography>
+            <Typography variant="h6" component="div" sx={{ marginLeft: '50px'}}
+            onClick={() => navigate('/hobby')}
+            >
+              Hobby
+            </Typography>
             <Button color="inherit" 
             sx={{ 
               width: '130px',
@@ -201,7 +226,6 @@ export default function Appbar() {
         height: '100px',
         marginLeft: '20px',
         borderRadius: '30px',
-
       }}>
       <TextField
         sx={{
@@ -209,7 +233,7 @@ export default function Appbar() {
           marginTop: '20px',
           width: '250px',
           borderRadius: '30px',
-          
+          flexGrow: 0,
           alignItems: 'left',
 
 
