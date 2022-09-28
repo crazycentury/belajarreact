@@ -1,11 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 import React,{ useState, useRef } from 'react';
-import Form from './form';
+
 import Appbar from './Appbar/Appbar';
-import View from './View';
+import View from './Appbar/View';
 import About from './Appbar/About';
 import Hobby from './Appbar/Hobby';
+import SearchList from './Appbar/SearchList';
+import NavbarRes from './Responsive/NavbarRes';
+import MainPage from './Responsive/MainPage';
 import {
   BrowserRouter,
   Switch,
@@ -19,7 +22,8 @@ import {
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      {/* <BrowserRouter>
+
         <Routes>
           <Route path="/" element={<Appbar/>} />
           <Route path="/view/:id" element={<View />} />
@@ -28,13 +32,10 @@ function App() {
           <Route path="*" element={<Navigate to='/' replace ></Navigate>}/>
         </Routes>
         
-      </BrowserRouter>
+      </BrowserRouter> */}
       
-
-
-
-      
-
+      <NavbarRes/>
+      <MainPage/>
     </div>
   );
 }

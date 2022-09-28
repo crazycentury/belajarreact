@@ -1,12 +1,17 @@
 .App {
-  text-align: center;
-  align-items: center;
+  /* text-align: center;
+  align-items: center; */
   width: 100%;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.selected-nav {
+  background-color: navy;
+  color: white;
 }
 
 @media (prefers-reduced-motion: no-preference) {
