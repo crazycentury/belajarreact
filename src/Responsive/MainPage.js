@@ -34,17 +34,17 @@ const MainPage = () => {
             <Container maxWidth= 'lg'>
                 <Grid container spacing={1} mt={3} mb={2}>
                 <Grid xs={12} md={9} mb={2}>
-                    <Container direction={{ xs:'column', md:'row'}}>
-                    <Grid item xs={4} md={4}>
+                    <Grid container spacing={2}>
+                    <Grid item xs={12} md={4}>
                         <ListCard/>
                     </Grid>
-                    <Grid item xs={4} md={4}>
+                    <Grid item xs={12} md={4}>
                         <ListCard/>
                     </Grid>
-                    <Grid item xs={4} md={4}>
+                    <Grid item xs={12} md={4}>
                         <ListCard/>
                     </Grid>
-                    </Container>
+                    </Grid>
                 </Grid>
                 <Grid xs={12} md={3} mb={2}>
                     <ItemSidebar sx={{ minHeight: '100vh', display: { xs: 'none', md: 'flex' }}}>
