@@ -14,6 +14,9 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import PropTypes from 'prop-types';
+import { useCallback } from 'react';
+import { Button } from '@mui/material';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -26,19 +29,32 @@ const ExpandMore = styled((props) => {
     }),
   }));
 
-const ListCard = () => {
+const useToggle = (initialState = false) => {
+  const [isOn, setIsOn] = useState(initialState);
+  const handleState = useCallback(() => setIsOn((isOn) => !isOn), []);
+
+  return [isOn, handleState];
+}
+
+const ListCard = (props) => {
     const [expanded, setExpanded] = React.useState(false);
+
+    //props
+    const {text, title} = props;
+
+    //custom hooks useToggle
+    const [isColorChanged, setIsColorChanged] = useToggle();
 
     const handleExpandClick = () => {
       setExpanded(!expanded);
     };
   
     return (
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 345, backgroundColor: isColorChanged ? "navy" : "white" }}>
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              R
+            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe" >
+              {text}
             </Avatar>
           }
           action={
@@ -46,7 +62,7 @@ const ListCard = () => {
               <MoreVertIcon />
             </IconButton>
           }
-          title="Tutorial 0"
+          title={title}
           subheader="21-11-2020"
           variant = 'h3'
         />
@@ -63,8 +79,19 @@ const ListCard = () => {
             if you like.
           </Typography>
         </CardContent>
+
+        {/* pemakaian useToogle */}
+        <Button onClick={setIsColorChanged}>
+          Push to Switch
+        </Button>
       </Card>
     );
-}
+};
+
+//use proptypes
+ListCard.propTypes = {
+  text: PropTypes.string,
+  title: PropTypes.string
+};
 
 export default ListCard

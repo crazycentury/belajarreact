@@ -31,18 +31,18 @@ const MainPage = () => {
         style={{
             width: '100%'
         }}>
-            <Container maxWidth= 'lg'>
+            <Container maxWidth= 'lg' backgroundColor='primary'>
                 <Grid container spacing={1} mt={3} mb={2}>
                 <Grid xs={12} md={9} mb={2}>
                     <Grid container spacing={2}>
                     <Grid item xs={12} md={4}>
-                        <ListCard/>
+                        <ListCard text="B" title="Bane"/>
                     </Grid>
                     <Grid item xs={12} md={4}>
-                        <ListCard/>
+                        <ListCard text="D" title="David"/>
                     </Grid>
                     <Grid item xs={12} md={4}>
-                        <ListCard/>
+                        <ListCard text="J" title="Julio"/>
                     </Grid>
                     </Grid>
                 </Grid>

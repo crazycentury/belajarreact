@@ -7,6 +7,8 @@ import reportWebVitals from './reportWebVitals';
 import { red } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
+const primaryColor = process.env.REACT_APP_COLOR_PRIMARY;
+
 const theme = createTheme({
   typography: {
     fontFamily: ['Comic Neue','cursive'].join(','),
@@ -26,6 +28,12 @@ const theme = createTheme({
       lg: 1200,
       xl: 1536,
     },
+  },
+
+  palette: {
+    primary: {
+      main: process.env.REACT_APP_COLOR_PRIMARY
+    }
   },
 });
 
