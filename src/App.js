@@ -18,12 +18,13 @@ import {
   Navigate
 } from "react-router-dom";
 
-
+export const CommonContext = React.createContext({});
 function App() {
+  const [apps] = useState({title:"You Here", color:"#8e4585"});
   return (
     <div className="App">
-      {/* <BrowserRouter>
-
+      <CommonContext.Provider value={{ apps }}>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Appbar/>} />
           <Route path="/view/:id" element={<View />} />
@@ -31,11 +32,11 @@ function App() {
           <Route path="/hobby" element={<Hobby />} />
           <Route path="*" element={<Navigate to='/' replace ></Navigate>}/>
         </Routes>
-        
-      </BrowserRouter> */}
+      </BrowserRouter>
+      </CommonContext.Provider>
       
-      <NavbarRes/>
-      <MainPage/>
+      {/* <NavbarRes/>
+      <MainPage/> */}
     </div>
   );
 }

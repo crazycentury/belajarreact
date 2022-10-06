@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext}from 'react';
 import AppBar from '@mui/material/AppBar';
 import DialogInput from './DialogInput';
 import SearchList from './SearchList';
@@ -7,11 +7,12 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { CommonContext } from '../App';
 
 
 const Navbar = () => {
     const navigate = useNavigate();
-    
+    const { apps } = useContext(CommonContext);
   return (
     <div>
       <Box >
